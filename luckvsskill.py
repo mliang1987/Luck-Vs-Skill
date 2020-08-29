@@ -17,15 +17,18 @@ def run_experiment(n = 100000,
 	Aggregates are sorted, and then the highest scores according to 'threshold' are identified.
 	Both the values for the whole population and the threshold group are returned.
 
-	Set verbose to True to print additional details.
-	Set report to True to generate a brief report for each experiment.
-
 	Parameters (keyword):
 		mu (float) - Mean of the normal distribution
 		sigma (float) - Standard deviation of the normal distribution
 		weight_skill (float) - The percentage weight of skill towards the aggregate score
 		threshold (float) - The percentage of the population accepted at the top
-		tolernance (float) - 
+		tolerance (float) - Testing normal distribution according to tolerance
+		verbose (bool) - Set verbose to True to print additional details.
+		report (bool) - Set report to True to generate a brief report for each experiment.
+
+	Returns:
+		all_means (ndarray) - Means of the features for the whole population
+		cutoff_means (ndarray) - Means of the features for the cutoff group
 	'''
 
 	# Generate n people with normal distribution of skill
