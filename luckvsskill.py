@@ -1,7 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def run_multiple_experiments(mn = 1000):
+# Author: Michael Liang
+
+def run_multiple_experiments(m = 10):
 	'''
 	Runs multiple experiments and aggregates the data.
 	Shows histogram of the "Lucked-out-Rate", which is a function of the number of people
@@ -10,14 +12,14 @@ def run_multiple_experiments(mn = 1000):
 	pop, cut, score = run_experiment()
 	scores = [score]
 
-	for _ in range(mn-1):
+	for _ in range(m-1):
 		a, b, c = run_experiment()
 		pop = np.vstack((pop, a))
 		cut = np.vstack((cut, b))
 		scores.append(c)
 	
 	print("\n------------------------------------------------------")
-	print("For {} experiments:".format(mn))
+	print("For {} experiments:".format(m))
 	print("------------------------------------------------------")
 	print("  Whole Population:")
 	print("    Skill: {}".format(np.mean(pop[:,1])))
@@ -63,7 +65,7 @@ def run_experiment(n = 500000,
 	'''
 
 	# Generate n people with normal distribution of skill
-	skill = np.random.normal(mu, sigma, n)
+	skill = np.random.normal(mu+0.4, sigma, n)
 	if verbose:
 		print("Check skill average close to mu:", np.allclose(mu, np.mean(skill), rtol=tolerance))
 		print("Check skill deviation close to sigma:", np.allclose(sigma,np.std(skill, ddof=1), rtol=tolerance))
@@ -115,5 +117,5 @@ def run_experiment(n = 500000,
 
 
 if __name__ == "__main__":
-	run_multiple_experiments()
+	run_multiple_experiments(m = 10)
 	
